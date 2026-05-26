@@ -12,13 +12,17 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
 
     //YOUR CODE STARTS HERE
 
+        @Autowired
+        TeacherDao teacherDao;
+
+        //YOUR CODE ENDS HERE
 
     //YOUR CODE ENDS HERE
 
     public List<Teacher> getAllTeachers() {
         //YOUR CODE STARTS HERE
 
-        return null;
+        return teacherDao.getAllTeachers();
 
         //YOUR CODE ENDS HERE
     }
@@ -26,8 +30,7 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     public Teacher getTeacherById(int id) {
         //YOUR CODE STARTS HERE
 
-
-            return null;
+        return teacherDao.findTeacherById(id);
 
         //YOUR CODE ENDS HERE
     }
@@ -35,8 +38,7 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     public Teacher addNewTeacher(Teacher teacher) {
         //YOUR CODE STARTS HERE
 
-
-        return null;
+        return teacherDao.createNewTeacher(teacher);
 
         //YOUR CODE ENDS HERE
     }
@@ -44,8 +46,8 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     public Teacher updateTeacherData(int id, Teacher teacher) {
         //YOUR CODE STARTS HERE
 
-
-        return null;
+        teacherDao.updateTeacher(teacher);
+        return teacherDao.findTeacherById(id);
 
         //YOUR CODE ENDS HERE
     }
@@ -53,7 +55,7 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     public void deleteTeacherById(int id) {
         //YOUR CODE STARTS HERE
 
-
+        teacherDao.deleteTeacher(id);
 
         //YOUR CODE ENDS HERE
     }
