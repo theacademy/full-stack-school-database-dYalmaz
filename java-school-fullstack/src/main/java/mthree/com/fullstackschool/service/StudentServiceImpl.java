@@ -13,8 +13,10 @@ public class StudentServiceImpl implements StudentServiceInterface {
 
     //YOUR CODE STARTS HERE
 
-    @Autowired
-    private StudentDao studentDao;
+    private final StudentDao studentDao;
+    public StudentServiceImpl(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
 
     //YOUR CODE ENDS HERE
 

@@ -12,8 +12,11 @@ public class CourseServiceImpl implements CourseServiceInterface {
 
     //YOUR CODE STARTS HERE
 
-    @Autowired
-    CourseDao courseDao;
+    private final CourseDao courseDao;
+
+    public CourseServiceImpl(CourseDao courseDao) {
+        this.courseDao = courseDao;
+    }
 
     //YOUR CODE ENDS HERE
 
