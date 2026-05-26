@@ -53,7 +53,7 @@ public class CourseDaoImpl implements CourseDao {
     public List<Course> getAllCourses() {
         //YOUR CODE STARTS HERE
 
-        final String sql = "SELECT cid, courseName, courseDesc, teacherId FROM course;";
+        final String sql = "SELECT * FROM course;";
         return jdbcTemplate.query(sql, new CourseMapper());
 
         //YOUR CODE ENDS HERE
