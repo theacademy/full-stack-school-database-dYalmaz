@@ -47,6 +47,13 @@ public class TeacherServiceImpl implements TeacherServiceInterface {
     public Teacher updateTeacherData(int id, Teacher teacher) {
         //YOUR CODE STARTS HERE
 
+        if (id != teacher.getTeacherId()) {
+            teacher.setTeacherFName("IDs do not match, teacher not updated");
+            teacher.setTeacherLName("IDs do not match, teacher not updated");
+            teacher.setDept("IDs do not match, teacher not updated");
+            return teacher;
+        }
+
         teacherDao.updateTeacher(teacher);
         return teacherDao.findTeacherById(id);
 

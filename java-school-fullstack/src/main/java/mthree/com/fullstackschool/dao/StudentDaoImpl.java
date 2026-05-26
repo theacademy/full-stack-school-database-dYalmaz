@@ -45,7 +45,10 @@ public class StudentDaoImpl implements StudentDao {
 
         }, keyHolder);
 
-        student.setStudentId(keyHolder.getKey().intValue());
+        Number generatedKey = keyHolder.getKey();
+        if (generatedKey != null) {
+            student.setStudentId(generatedKey.intValue());
+        }
 
         return student;
 
@@ -67,7 +70,7 @@ public class StudentDaoImpl implements StudentDao {
     public Student findStudentById(int id) {
         //YOUR CODE STARTS HERE
 
-        final String sql = "SELECT sid, fName, lName FROM student WHERE sid = ?;";
+        final String sql = "SELECT * FROM student WHERE sid = ?;";
 
         return jdbcTemplate.queryForObject(sql, new StudentMapper(), id);
 
@@ -80,7 +83,7 @@ public class StudentDaoImpl implements StudentDao {
 
         final String sql = "UPDATE student SET "
                 + "fName = ?, "
-                + "lName = ?, "
+                + "lName = ? "
                 + "WHERE sid = ?;";
 
         jdbcTemplate.update(sql,
@@ -105,7 +108,7 @@ public class StudentDaoImpl implements StudentDao {
     public void addStudentToCourse(int studentId, int courseId) {
         //YOUR CODE STARTS HERE
 
-        final String sql = "INSERT INTO student_course(studentId, courseId) VALUES(?,?);";
+        final String sql = "INSERT INTO course_student(student_id, course_id) VALUES(?,?);";
         jdbcTemplate.update(sql, studentId, courseId);
 
         //YOUR CODE ENDS HERE
@@ -115,7 +118,7 @@ public class StudentDaoImpl implements StudentDao {
     public void deleteStudentFromCourse(int studentId, int courseId) {
         //YOUR CODE STARTS HERE
 
-        final String sql = "DELETE FROM student_course WHERE studentId = ? AND courseId = ?;";
+        final String sql = "DELETE FROM course_student WHERE student_id = ? AND course_id = ?;";
         jdbcTemplate.update(sql, studentId, courseId);
 
         //YOUR CODE ENDS HERE
